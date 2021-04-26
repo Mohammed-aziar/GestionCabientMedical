@@ -12,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 import com.CabinetMedical.ws.entities.CertificatEntity;
 import com.CabinetMedical.ws.entities.PatientEntity;
 import com.CabinetMedical.ws.entities.PayementEntity;
@@ -99,5 +100,12 @@ public class GestionCabinetMedicalApplication implements CommandLineRunner {
 		 * etatRepository.findAll().forEach(r -> { System.out.println(r.toString()); });
 		 */
 	}
+	
+	
+//	@Bean
+//	public PasswordEncoder encoder() {
+//	    return new BCryptPasswordEncoder();
+//	}
+//	
 
 }
