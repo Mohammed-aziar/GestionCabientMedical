@@ -16,6 +16,12 @@ public class PatientRequest {
 	private String sagn;
 	private LocalDate dateNaissance;
 	private Date dateCreationFichierMedical;
+	
+	public PatientRequest() {
+		// TODO Auto-generated constructor stub
+		this.dateCreationFichierMedical=new Date();
+	}
+	
 	public Long getPatientId() {
 		return patientId;
 	}

@@ -37,10 +37,13 @@ public class PatientEntity implements Serializable {
 	private String tel;
 	@Column(length = 120, unique = true)
 	private String email;
+	
 	@Column(length = 20)
 	private String sexe;
+	
 	@Column(length = 20)
 	private String cin;
+	
 	@Column(length = 30)
 	private String prefession;
 	@Column(length = 10)
