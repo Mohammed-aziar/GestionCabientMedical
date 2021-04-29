@@ -55,14 +55,14 @@ public class PatientEntity implements Serializable {
 	private List<RDVEntity> RDV;
 		
 	@OneToOne(mappedBy = "patientEntity")
-	private PreInformationEtatEntity preInformationEtatEntity;
+	private PreInformationEtatEntity preInformationEtat;
 
 	
 	@OneToOne(mappedBy = "patient")
-	private AssurenceEntity assurenceEntity;
+	private AssurenceEntity assurence;
 	
 	@OneToMany(mappedBy = "patient" ,cascade = CascadeType.ALL)
-	private List<VisiteEntity> visiteEntities;
+	private List<VisiteEntity> visite;
 	
 	/**
 	 * @param nom
@@ -214,33 +214,35 @@ public class PatientEntity implements Serializable {
 	}
 
 
-	public PreInformationEtatEntity getPreInformationEtatEntity() {
-		return preInformationEtatEntity;
+	
+
+	public PreInformationEtatEntity getPreInformationEtat() {
+		return preInformationEtat;
 	}
 
 
-	public AssurenceEntity getAssurenceEntity() {
-		return assurenceEntity;
+	public AssurenceEntity getAssurence() {
+		return assurence;
 	}
 
 
-	public List<VisiteEntity> getVisiteEntities() {
-		return visiteEntities;
+	public List<VisiteEntity> getVisite() {
+		return visite;
 	}
 
 
-	public void setPreInformationEtatEntity(PreInformationEtatEntity preInformationEtatEntity) {
-		this.preInformationEtatEntity = preInformationEtatEntity;
+	public void setPreInformationEtat(PreInformationEtatEntity preInformationEtat) {
+		this.preInformationEtat = preInformationEtat;
 	}
 
 
-	public void setAssurenceEntity(AssurenceEntity assurenceEntity) {
-		this.assurenceEntity = assurenceEntity;
+	public void setAssurence(AssurenceEntity assurence) {
+		this.assurence = assurence;
 	}
 
 
-	public void setVisiteEntities(List<VisiteEntity> visiteEntities) {
-		this.visiteEntities = visiteEntities;
+	public void setVisite(List<VisiteEntity> visite) {
+		this.visite = visite;
 	}
 
 

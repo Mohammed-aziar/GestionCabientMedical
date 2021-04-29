@@ -3,6 +3,7 @@ package com.CabinetMedical.ws.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 
 
@@ -25,8 +26,8 @@ public class PatientDto implements Serializable {
 	private String sagn;
 	private LocalDate dateNaissance;
 	private Date dateCreationFichierMedical;
-	
-
+	private List<RDVDto> RDV;
+	private List<VisiteDto> visite;
 
 	
 	public Long getPatientId() {
@@ -100,6 +101,18 @@ public class PatientDto implements Serializable {
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	public List<RDVDto> getRDV() {
+		return RDV;
+	}
+	public void setRDV(List<RDVDto> rDV) {
+		RDV = rDV;
+	}
+	public List<VisiteDto> getVisite() {
+		return visite;
+	}
+	public void setVisite(List<VisiteDto> visite) {
+		this.visite = visite;
 	}
 	
 	 

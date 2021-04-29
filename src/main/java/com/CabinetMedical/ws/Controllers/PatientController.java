@@ -36,7 +36,6 @@ public class PatientController {
 		PatientDto patientDto = patientService.getPatientById(patientId);
 		PatientResponse patientResponse = modelMapper.map(patientDto, PatientResponse.class);
 		return new ResponseEntity<PatientResponse>(patientResponse, HttpStatus.OK);
-
 	}
 
 	@GetMapping
@@ -45,6 +44,9 @@ public class PatientController {
 		List<PatientResponse> patientResponses = new ArrayList<>();
 
 		List<PatientDto> patientDto = patientService.getPatients(page, limit);
+		
+		
+		
 		for (PatientDto dto : patientDto) {
 			PatientResponse patients = modelMapper.map(dto, PatientResponse.class);
 			// BeanUtils.copyProperties(dto, user);

@@ -7,12 +7,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.CabinetMedical.ws.dto.PatientDto;
 import com.CabinetMedical.ws.entities.PatientEntity;
 import com.CabinetMedical.ws.repositories.PatientRepository;
 import com.CabinetMedical.ws.services.PatientService;
+
 
 @Service
 public class PatientServiceImpl implements PatientService {
@@ -25,6 +27,7 @@ public class PatientServiceImpl implements PatientService {
 	public PatientDto getPatientById(Long patientId) {
 //		PatientEntity patientEntity= patientRepository.findByPatientId(patientId);
 		PatientEntity patientEntity = (PatientEntity) patientRepository.findAll();
+		
 		if (patientEntity == null)
 			throw new RuntimeException("aucun patient dans la base de donnée avec cette id");
 
@@ -40,16 +43,21 @@ public class PatientServiceImpl implements PatientService {
 			page -= page;
 
 		List<PatientDto> patinetDto = new ArrayList<>();
-		PageRequest pageable = PageRequest.of(page, limit);
-
-		Page<PatientEntity> PatientsEntities = patientRepository.findAllPatientByPrenom(pageable);
-
-
-		for (PatientEntity patient : PatientsEntities) {
+		Pageable pageable = PageRequest.of(page, limit);
+		
+//		Page<UserEntity> usersEntities = userRepository.findAllUserByFirstName(pageable);
+		Page<PatientEntity> usersPage = patientRepository.findAll(pageable);
+		
+		
+		ModelMapper modelMapper = new ModelMapper();
+		
+		List<PatientEntity> usersEntities= usersPage.getContent();
+		
+		for (PatientEntity patient : usersEntities) {
 			PatientDto dto = modelMapper.map(patient, PatientDto.class);
 			patinetDto.add(dto);
 		}
-
+		
 		return patinetDto;
 	}
 
