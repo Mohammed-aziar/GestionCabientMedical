@@ -5,16 +5,13 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.stereotype.Service;
 
 import com.CabinetMedical.ws.dto.PatientDto;
 import com.CabinetMedical.ws.entities.PatientEntity;
 import com.CabinetMedical.ws.repositories.PatientRepository;
 import com.CabinetMedical.ws.services.PatientService;
-
 
 @Service
 public class PatientServiceImpl implements PatientService {
@@ -25,41 +22,16 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	public PatientDto getPatientById(Long patientId) {
-//		PatientEntity patientEntity= patientRepository.findByPatientId(patientId);
-		PatientEntity patientEntity = (PatientEntity) patientRepository.findAll();
-		
+		PatientEntity patientEntity= patientRepository.findByPatientId(patientId);
 		if (patientEntity == null)
 			throw new RuntimeException("aucun patient dans la base de donnée avec cette id");
-
 
 		PatientDto patientDto = modelMapper.map(patientEntity, PatientDto.class);
 
 		return patientDto;
 	}
 
-	@Override
-	public List<PatientDto> getPatients(int page, int limit) {
-		if (page > 0)
-			page -= page;
-
-		List<PatientDto> patinetDto = new ArrayList<>();
-		Pageable pageable = PageRequest.of(page, limit);
-		
-//		Page<UserEntity> usersEntities = userRepository.findAllUserByFirstName(pageable);
-		Page<PatientEntity> usersPage = patientRepository.findAll(pageable);
-		
-		
-		ModelMapper modelMapper = new ModelMapper();
-		
-		List<PatientEntity> usersEntities= usersPage.getContent();
-		
-		for (PatientEntity patient : usersEntities) {
-			PatientDto dto = modelMapper.map(patient, PatientDto.class);
-			patinetDto.add(dto);
-		}
-		
-		return patinetDto;
-	}
+	
 
 	@Override
 	public PatientDto createPatient(PatientDto patient) {
@@ -104,10 +76,26 @@ public class PatientServiceImpl implements PatientService {
 		Patient.setSagn(patientDto.getSagn());
 		Patient.setDateNaissance(patientDto.getDateNaissance());
 		PatientEntity UpdatedPatient = patientRepository.save(Patient);
-		
+
 		PatientDto Dto = modelMapper.map(UpdatedPatient, PatientDto.class);
-		
+
 		return Dto;
+	}
+
+	@Override
+	public List<PatientDto> getPatientsFullName(String nom) {
+		List<PatientDto> patientDto = new ArrayList<>();
+		List<PatientEntity> patientEntity = new ArrayList<>();
+		if (!nom.isEmpty())
+			patientEntity = patientRepository.findAllPatientByNomPrenom(nom);
+		else 
+			patientEntity = (List<PatientEntity>) patientRepository.findAll();
+		
+		for (PatientEntity patient : patientEntity) {
+			PatientDto dto = modelMapper.map(patient, PatientDto.class);
+			patientDto.add(dto);
+		}
+		return patientDto;
 	}
 
 }

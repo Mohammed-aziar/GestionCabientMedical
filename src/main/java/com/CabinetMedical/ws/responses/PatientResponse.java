@@ -2,11 +2,11 @@ package com.CabinetMedical.ws.responses;
 
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 
 
 public class PatientResponse {
+	
 	private Long patientId;
 	private String nom;
 	private String prenom;
@@ -20,9 +20,7 @@ public class PatientResponse {
 	private LocalDate dateNaissance;
 	private Date dateCreationFichierMedical;
 	
-	private List<RDVResponse> RDV;
 	
-	private List<VisiteResponse> visite;
 
 	
 	public Long getPatientId() {
@@ -97,19 +95,7 @@ public class PatientResponse {
 	public void setDateCreationFichierMedical(Date dateCreationFichierMedical) {
 		this.dateCreationFichierMedical = dateCreationFichierMedical;
 	}
-	public List<RDVResponse> getRDV() {
-		return RDV;
-	}
-	public void setRDV(List<RDVResponse> rDV) {
-		RDV = rDV;
-	}
-	public List<VisiteResponse> getVisite() {
-		return visite;
-	}
-	public void setVisite(List<VisiteResponse> visite) {
-		this.visite = visite;
-	}
-	
+
 	
 	
 	

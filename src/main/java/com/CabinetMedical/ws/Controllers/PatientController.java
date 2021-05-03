@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,31 +29,29 @@ public class PatientController {
 
 	ModelMapper modelMapper = new ModelMapper();
 
-	@GetMapping(path = "{patientId}")
-	public ResponseEntity<PatientResponse> getPatient(@PathVariable("patientId") Long patientId) {
+	@GetMapping("/getPatientByFullName")
+	public ResponseEntity<PatientResponse> getPatientId(@RequestParam(value = "id") Long patientId) {
 		System.out.println(patientId);
 		PatientDto patientDto = patientService.getPatientById(patientId);
 		PatientResponse patientResponse = modelMapper.map(patientDto, PatientResponse.class);
 		return new ResponseEntity<PatientResponse>(patientResponse, HttpStatus.OK);
 	}
-
-	@GetMapping
-	public List<PatientResponse> getAllUsers(@RequestParam(value = "page", defaultValue = "1") int page,
-			@RequestParam(value = "limit", defaultValue = "2") int limit) {
+	
+	@GetMapping("/getListPatientsFullName")
+	public ResponseEntity<List<PatientResponse>> getPatientsFullName(@RequestParam(value = "nom",defaultValue = "") String  nom) {
+		
+		List<PatientDto> patientDto = patientService.getPatientsFullName(nom);
 		List<PatientResponse> patientResponses = new ArrayList<>();
-
-		List<PatientDto> patientDto = patientService.getPatients(page, limit);
-		
-		
-		
-		for (PatientDto dto : patientDto) {
-			PatientResponse patients = modelMapper.map(dto, PatientResponse.class);
-			// BeanUtils.copyProperties(dto, user);
-			patientResponses.add(patients);
-
+		for(PatientDto dto : patientDto) {
+			PatientResponse patientResponse = modelMapper.map(dto, PatientResponse.class);
+			patientResponses.add(patientResponse);
 		}
-		return patientResponses;
+		
+		
+		
+		return new ResponseEntity<List<PatientResponse>>(patientResponses, HttpStatus.OK);
 	}
+
 
 	@PostMapping
 	public PatientResponse creerPatient(@RequestBody PatientRequest patient) {
@@ -67,16 +64,16 @@ public class PatientController {
 		return response;
 	}
 
-	@DeleteMapping(path = "{patientId}")
-	public ResponseEntity<Object> deletePatient(@PathVariable("patientId") Long patientId) {
+	@DeleteMapping
+	public ResponseEntity<Object> deletePatient(@RequestParam("id") Long patientId) {
 		patientService.deletePatinet(patientId);
-
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-	@PutMapping(path = "{patientId}")
+	
+	@PutMapping
 	public ResponseEntity<PatientResponse> updatePatient(@RequestBody PatientRequest patientRequest,
-			@PathVariable("patientId") Long patientId) {
+			@RequestParam("patientId") Long patientId) {
 		PatientDto patientDto = modelMapper.map(patientRequest, PatientDto.class);
 		PatientDto patinetDto2 = patientService.updatePatient(patientId, patientDto);
 
