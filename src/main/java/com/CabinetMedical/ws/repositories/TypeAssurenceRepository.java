@@ -7,4 +7,6 @@ import com.CabinetMedical.ws.entities.TypeAssurenceEntity;
 @Repository
 public interface TypeAssurenceRepository extends JpaRepository<TypeAssurenceEntity, Long> {
 
+	TypeAssurenceEntity findByTypeId(long typeAssurenceId);
+	TypeAssurenceEntity findByLibelle(String libelle);
 }
