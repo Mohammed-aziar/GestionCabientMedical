@@ -2,24 +2,14 @@ package com.CabinetMedical.ws;
 
 
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 //hi this test for ssh
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.CabinetMedical.ws.entities.CertificatEntity;
-import com.CabinetMedical.ws.entities.PatientEntity;
-import com.CabinetMedical.ws.entities.PayementEntity;
-import com.CabinetMedical.ws.entities.PreInformationEtatEntity;
-import com.CabinetMedical.ws.entities.RDVEntity;
-import com.CabinetMedical.ws.entities.VisiteEntity;
+
 import com.CabinetMedical.ws.repositories.CertificatRepository;
 import com.CabinetMedical.ws.repositories.PatientRepository;
 import com.CabinetMedical.ws.repositories.PayementRepository;
