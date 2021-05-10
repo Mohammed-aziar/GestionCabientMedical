@@ -1,5 +1,9 @@
 package com.CabinetMedical.ws.services;
 
-public interface PreInformationEtatService {
+import com.CabinetMedical.ws.dto.PreInformationEtatDto;
 
+public interface PreInformationEtatService {
+	PreInformationEtatDto  getPreInfoById(Long infoId);
+	PreInformationEtatDto createPreInfo(PreInformationEtatDto preInfoDto);
+	void deletePreInfoEtat(Long infoId);
 }

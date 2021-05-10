@@ -22,7 +22,7 @@ public class AssurenceEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Long AssurenceId;
+	private Long assurenceId;
 	
 	
 	@OneToOne
@@ -42,7 +42,7 @@ public class AssurenceEntity implements Serializable {
 	 */
 	public AssurenceEntity(Long assurenceId, PatientEntity patient, TypeAssurenceEntity typeAssurenceEntity) {
 		super();
-		AssurenceId = assurenceId;
+		this.assurenceId = assurenceId;
 		this.patient = patient;
 		this.typeAssurenceEntity = typeAssurenceEntity;
 	}
@@ -56,7 +56,7 @@ public class AssurenceEntity implements Serializable {
 	}
 
 	public Long getAssurenceId() {
-		return AssurenceId;
+		return assurenceId;
 	}
 
 	public PatientEntity getPatient() {
@@ -68,7 +68,7 @@ public class AssurenceEntity implements Serializable {
 	}
 
 	public void setAssurenceId(Long assurenceId) {
-		AssurenceId = assurenceId;
+		this.assurenceId = assurenceId;
 	}
 
 	public void setPatient(PatientEntity patient) {
