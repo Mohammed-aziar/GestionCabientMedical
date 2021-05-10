@@ -7,6 +7,7 @@ public class RDVResponse {
 	private Long RDVId;
 	private LocalDateTime date_RDV;
 	private Date dateCreationRDV;
+	private Long patientId;
 	
 	public Long getRDVId() {
 		return RDVId;
@@ -25,6 +26,12 @@ public class RDVResponse {
 	}
 	public void setDateCreationRDV(Date dateCreationRDV) {
 		this.dateCreationRDV = dateCreationRDV;
+	}
+	public Long getPatientId() {
+		return patientId;
+	}
+	public void setPatientId(Long patientId) {
+		this.patientId = patientId;
 	}
 	
 }

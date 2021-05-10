@@ -1,9 +1,9 @@
-package com.CabinetMedical.ws.dto;
+package com.CabinetMedical.ws.requests;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class RDVDto {
+public class RDVRequest {
 	private Long RDVId;
 	private LocalDateTime date_RDV;
 	private Date dateCreationRDV;

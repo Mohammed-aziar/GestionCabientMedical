@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.CabinetMedical.ws.entities.RDVEntity;
 @Repository
 public interface RDVRepository extends JpaRepository<RDVEntity, Long> {
+	RDVEntity findByRDVId(long rdvId);
 }

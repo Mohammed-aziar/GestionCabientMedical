@@ -1,5 +1,7 @@
 package com.CabinetMedical.ws.services;
 
-public interface RDVService {
+import com.CabinetMedical.ws.dto.RDVDto;
 
+public interface RDVService {
+	RDVDto getRDVById(Long rdvID);
 }
