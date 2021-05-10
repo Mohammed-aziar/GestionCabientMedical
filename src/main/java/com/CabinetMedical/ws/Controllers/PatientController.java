@@ -22,7 +22,7 @@ import com.CabinetMedical.ws.responses.PatientResponse;
 import com.CabinetMedical.ws.services.PatientService;
 
 @RestController
-@RequestMapping("patients/")
+@RequestMapping("/patients")
 public class PatientController {
 	@Autowired
 	PatientService patientService;
@@ -30,7 +30,7 @@ public class PatientController {
 	ModelMapper modelMapper = new ModelMapper();
 
 	@GetMapping("/getPatientByFullName")
-	public ResponseEntity<PatientResponse> getPatientId(@RequestParam(value = "id") Long patientId) {
+	public ResponseEntity<PatientResponse> getPatientId(@RequestParam(value = "patientId") Long patientId) {
 		PatientDto patientDto = patientService.getPatientById(patientId);
 		PatientResponse patientResponse = modelMapper.map(patientDto, PatientResponse.class);
 		return new ResponseEntity<PatientResponse>(patientResponse, HttpStatus.OK);

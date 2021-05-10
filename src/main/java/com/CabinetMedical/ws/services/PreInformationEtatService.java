@@ -6,4 +6,5 @@ public interface PreInformationEtatService {
 	PreInformationEtatDto  getPreInfoById(Long infoId);
 	PreInformationEtatDto createPreInfo(PreInformationEtatDto preInfoDto);
 	void deletePreInfoEtat(Long infoId);
+	PreInformationEtatDto updatePreInfo(Long preInfoId,PreInformationEtatDto preInfoDto);
 }

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,4 +55,16 @@ public class PreInformationEtatController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
+	@PutMapping
+	public ResponseEntity<PreInformationEtatResponse> updatePreInfoEtat(@RequestBody PreInfomationEtatRequest preinfoRequest,
+			@RequestParam("preInfoEtatId") Long preInfoId) {
+		
+		PreInformationEtatDto preInfoDto = modelMapper.map(preinfoRequest, PreInformationEtatDto.class);
+		
+		PreInformationEtatDto preInfoDto2 = preInformationEtatService.updatePreInfo(preInfoId, preInfoDto);
+
+		PreInformationEtatResponse Response = modelMapper.map(preInfoDto2, PreInformationEtatResponse.class);
+
+		return new ResponseEntity<PreInformationEtatResponse>(Response, HttpStatus.ACCEPTED);
+	}
 }

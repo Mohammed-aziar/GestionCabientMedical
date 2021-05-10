@@ -1,5 +1,6 @@
 package com.CabinetMedical.ws.services.impl;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,24 @@ public class PreInformationEtatServiceImpl  implements PreInformationEtatService
 		if( check == null ) throw new RuntimeException("Pre information etat n'exist pas .");
 
 		preInformationEtatRepository.delete(check);
+	}
+
+	@Override
+	public PreInformationEtatDto updatePreInfo(Long preInfoId, PreInformationEtatDto preInfoDto) {
+		
+		PatientEntity patient = patientRepository.findByPatientId(preInfoDto.getPatinetId());
+		
+		if( patient == null )throw new RuntimeException("cette patient n'exist pas .");
+
+		PreInformationEtatEntity checkPatientPreInfo = preInformationEtatRepository.findByPatinetId(preInfoDto.getPatinetId());
+		
+		checkPatientPreInfo.setHistorique(preInfoDto.getHistorique());
+		
+		PreInformationEtatEntity updatedPreInfoEtat = preInformationEtatRepository.save(checkPatientPreInfo);
+		
+		PreInformationEtatDto dto = new PreInformationEtatDto(updatedPreInfoEtat.getInfoId(), updatedPreInfoEtat.getHistorique(), updatedPreInfoEtat.getPatientEntity().getPatientId()); 
+		
+		return dto;
 	}
 
 }
