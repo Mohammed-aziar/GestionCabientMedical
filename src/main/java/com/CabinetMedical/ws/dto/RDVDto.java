@@ -9,6 +9,7 @@ public class RDVDto {
 	private Date dateCreationRDV;
 	private Long patientId;
 	
+	
 	public Long getRDVId() {
 		return RDVId;
 	}
