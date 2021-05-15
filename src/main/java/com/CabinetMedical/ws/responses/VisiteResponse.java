@@ -10,6 +10,9 @@ public class VisiteResponse {
 	private String type;
 	private String diagnostic;
 	private String commantaire;
+	private Long patinetId;
+	
+	
 	public Long getVisiteId() {
 		return visiteId;
 	}
@@ -31,6 +34,7 @@ public class VisiteResponse {
 	public String getCommantaire() {
 		return commantaire;
 	}
+	
 	public void setVisiteId(Long visiteId) {
 		this.visiteId = visiteId;
 	}
@@ -51,5 +55,12 @@ public class VisiteResponse {
 	}
 	public void setCommantaire(String commantaire) {
 		this.commantaire = commantaire;
+	}
+	
+	public Long getPatinetId() {
+		return patinetId;
+	}
+	public void setPatinetId(Long patinetId) {
+		this.patinetId = patinetId;
 	}
 }

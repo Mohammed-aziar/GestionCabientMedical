@@ -1,8 +1,8 @@
-package com.CabinetMedical.ws.dto;
+package com.CabinetMedical.ws.requests;
 
 import java.util.Date;
 
-public class VisiteDto {
+public class VisiteRequest {
 	private Long visiteId;
 	private Date dateDebut;
 	private Date dateFin;
@@ -12,24 +12,6 @@ public class VisiteDto {
 	private String commantaire;
 	private Long patinetId;
 	
-	
-	public VisiteDto() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public VisiteDto(Long visiteId, Date dateDebut, Date dateFin, String motif, String type, String diagnostic,
-			String commantaire, Long patinetId) {
-		super();
-		this.visiteId = visiteId;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-		this.motif = motif;
-		this.type = type;
-		this.diagnostic = diagnostic;
-		this.commantaire = commantaire;
-		this.patinetId = patinetId;
-	}
 	
 	public Long getVisiteId() {
 		return visiteId;
@@ -81,12 +63,4 @@ public class VisiteDto {
 	public void setPatinetId(Long patinetId) {
 		this.patinetId = patinetId;
 	}
-
-	@Override
-	public String toString() {
-		return "VisiteDto [visiteId=" + visiteId + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", motif="
-				+ motif + ", type=" + type + ", diagnostic=" + diagnostic + ", commantaire=" + commantaire
-				+ ", patinetId=" + patinetId + "]";
-	}
-	
 }
