@@ -57,10 +57,13 @@ public class VisiteController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<VisiteResponse> createVisite(@RequestBody VisiteRequest visiteRequest){
+	public VisiteResponse createVisite(@RequestBody VisiteRequest visiteRequest){
 		
 		VisiteDto visiteDto=modelMapper.map(visiteRequest, VisiteDto.class);
-		System.out.println(visiteDto.toString());
-		return null;
+		VisiteDto createVisite = visiteService.createVisite(visiteDto);
+		
+		VisiteResponse visiteResponse= modelMapper.map(createVisite, VisiteResponse.class);
+		
+		return visiteResponse;
 	}
 }

@@ -3,12 +3,15 @@ package com.CabinetMedical.ws.services.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
 import com.CabinetMedical.ws.dto.VisiteDto;
+import com.CabinetMedical.ws.entities.PatientEntity;
 import com.CabinetMedical.ws.entities.VisiteEntity;
+import com.CabinetMedical.ws.repositories.PatientRepository;
 import com.CabinetMedical.ws.repositories.VisiteRepository;
 import com.CabinetMedical.ws.services.VisiteService;
 
@@ -17,7 +20,11 @@ public class VisiteServiceImpl implements VisiteService {
 
 	@Autowired
 	VisiteRepository visiteRepository;
-
+	@Autowired 
+	PatientRepository patientRepository;
+	
+	ModelMapper model=new ModelMapper();
+	
 	@Override
 	public VisiteDto getByVisiteId(Long visiteId) {
 		VisiteEntity checkVisite = visiteRepository.findByVisiteId(visiteId);
@@ -45,6 +52,21 @@ public class VisiteServiceImpl implements VisiteService {
 		}
 		
 			return visiteDto;
+	}
+
+	@Override
+	public VisiteDto createVisite(VisiteDto visiteDto) {
+		PatientEntity patient = patientRepository.findByPatientId(visiteDto.getPatinetId());
+		if(patient == null )throw new RuntimeException("patient n'exist pas");
+		
+       VisiteEntity visite = new VisiteEntity(visiteDto.getDateDebut(),visiteDto.getDateFin(), visiteDto.getMotif(), visiteDto.getType(), visiteDto.getDiagnostic(), visiteDto.getCommantaire(),patient);
+       
+       VisiteEntity visiteCreated = visiteRepository.save(visite);
+       
+		
+		VisiteDto visiteResponse= model.map(visiteCreated, VisiteDto.class);
+		
+		return visiteResponse;
 	}
 
 }
