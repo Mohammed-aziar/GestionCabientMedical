@@ -9,4 +9,5 @@ public interface VisiteService {
 	VisiteDto getByVisiteId(Long visiteId);
 	List<VisiteDto>	getListVisiteByPatientId(Long patientId);
 	VisiteDto createVisite(VisiteDto visiteDto);
+	void deleteVisite(Long visiteId);
 }
