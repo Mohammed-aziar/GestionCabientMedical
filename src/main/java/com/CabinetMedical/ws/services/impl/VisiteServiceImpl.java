@@ -54,12 +54,20 @@ public class VisiteServiceImpl implements VisiteService {
 			return visiteDto;
 	}
 
+	
 	@Override
 	public VisiteDto createVisite(VisiteDto visiteDto) {
-		PatientEntity patient = patientRepository.findByPatientId(visiteDto.getPatinetId());
+		PatientEntity patient = patientRepository.findByPatientId(visiteDto.getPatientId());
 		if(patient == null )throw new RuntimeException("patient n'exist pas");
 		
-       VisiteEntity visite = new VisiteEntity(visiteDto.getDateDebut(),visiteDto.getDateFin(), visiteDto.getMotif(), visiteDto.getType(), visiteDto.getDiagnostic(), visiteDto.getCommantaire(),patient);
+       VisiteEntity visite = new VisiteEntity();
+       visite.setDateDebut(visiteDto.getDateDebut());
+       visite.setDateFin(visiteDto.getDateFin());
+       visite.setMotif(visiteDto.getMotif());
+       visite.setCommantaire(visiteDto.getCommantaire());
+       visite.setDiagnostic(visiteDto.getDiagnostic());
+       visite.setPatient(patient);
+       visite.setType(visiteDto.getType());
        
        VisiteEntity visiteCreated = visiteRepository.save(visite);
        
@@ -67,6 +75,15 @@ public class VisiteServiceImpl implements VisiteService {
 		VisiteDto visiteResponse= model.map(visiteCreated, VisiteDto.class);
 		
 		return visiteResponse;
+		
+	}
+
+	
+	
+	
+	@Override
+	public void deleteVisite(Long visiteId) {
+		visiteRepository.deleteById(visiteId);
 	}
 
 }

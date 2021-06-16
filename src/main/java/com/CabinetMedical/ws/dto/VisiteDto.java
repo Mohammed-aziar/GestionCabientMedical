@@ -10,7 +10,7 @@ public class VisiteDto {
 	private String type;
 	private String diagnostic;
 	private String commantaire;
-	private Long patinetId;
+	private Long patientId;
 	
 	
 	public VisiteDto() {
@@ -28,7 +28,7 @@ public class VisiteDto {
 		this.type = type;
 		this.diagnostic = diagnostic;
 		this.commantaire = commantaire;
-		this.patinetId = patinetId;
+		this.patientId = patinetId;
 	}
 	
 	public Long getVisiteId() {
@@ -74,19 +74,15 @@ public class VisiteDto {
 	public void setCommantaire(String commantaire) {
 		this.commantaire = commantaire;
 	}
-	
-	public Long getPatinetId() {
-		return patinetId;
-	}
-	public void setPatinetId(Long patinetId) {
-		this.patinetId = patinetId;
+
+	public Long getPatientId() {
+		return patientId;
 	}
 
-	@Override
-	public String toString() {
-		return "VisiteDto [visiteId=" + visiteId + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", motif="
-				+ motif + ", type=" + type + ", diagnostic=" + diagnostic + ", commantaire=" + commantaire
-				+ ", patinetId=" + patinetId + "]";
+	public void setPatientId(Long patientId) {
+		this.patientId = patientId;
 	}
+	
+	
 	
 }

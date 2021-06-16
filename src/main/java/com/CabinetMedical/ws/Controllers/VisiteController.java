@@ -57,21 +57,25 @@ public class VisiteController {
 		return new  ResponseEntity<List<VisiteResponse>>(response,HttpStatus.OK);
 	}
 	
-//	@PostMapping
-//	public VisiteResponse createVisite(@RequestBody VisiteRequest visiteRequest){
-//		
-//		VisiteDto visiteDto=modelMapper.map(visiteRequest, VisiteDto.class);
-//		VisiteDto createVisite = visiteService.createVisite(visiteDto);
-//		
-//		VisiteResponse visiteResponse= modelMapper.map(createVisite, VisiteResponse.class);
-//		
-//		return visiteResponse;
-//	}
+	@PostMapping
+	public VisiteResponse createVisite(@RequestBody VisiteRequest visiteRequest){
+		
+		VisiteDto visiteDto=modelMapper.map(visiteRequest, VisiteDto.class);
+		
+		System.out.println(visiteDto.getPatientId());
+		
+		VisiteDto createVisite = visiteService.createVisite(visiteDto);
+		
+		System.out.println(createVisite.getPatientId());
+		VisiteResponse visiteResponse= modelMapper.map(createVisite, VisiteResponse.class);
+		
+		return visiteResponse;
+	}
 	
 	
 	@DeleteMapping
-	public ResponseEntity<Object> deletePatient(@RequestParam("rdvId") Long rdvId) {
-		rdvService.deleteRdv(rdvId);
+	public ResponseEntity<Object> deletePatient(@RequestParam("visiteId") Long visiteId) {
+		visiteService.deleteVisite(visiteId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
